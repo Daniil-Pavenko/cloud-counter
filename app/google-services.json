@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "633692756479",
+    "firebase_url": "https://cloud-counter-205.firebaseio.com",
+    "project_id": "cloud-counter-205",
+    "storage_bucket": "cloud-counter-205.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633692756479:android:f47039c3f4654d2b",
+        "android_client_info": {
+          "package_name": "com.dp.cloudcounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633692756479-q70jsepm2qoev8ri26jossgluk6ga2r5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dp.cloudcounter",
+            "certificate_hash": "79f1f73a7280d77664771205528eb05b297a6171"
+          }
+        },
+        {
+          "client_id": "633692756479-0c3nmmr9uc6ugsjl1q3t0qodei0pe0ij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_VYzU0iJQev3wvkEKhZwfAwTWxOF16Tw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633692756479-0c3nmmr9uc6ugsjl1q3t0qodei0pe0ij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
