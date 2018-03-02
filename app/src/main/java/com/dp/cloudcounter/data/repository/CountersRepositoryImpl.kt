@@ -2,14 +2,13 @@ package com.dp.cloudcounter.data.repository
 
 import android.util.Log
 import com.dp.cloudcounter.data.entity.CounterEntity
-import com.dp.cloudcounter.data.repository.datasource.LocalCountersDataSource
-import com.dp.cloudcounter.data.repository.datasource.RemoteCountersDataSource
+import com.dp.cloudcounter.data.repository.datasource.CountersDataSource
 import com.dp.cloudcounter.domain.NetworkHelper
 
 private const val TAG = "CountersRepository"
 
-class CountersRepositoryImpl(private val localCountersDataSource: LocalCountersDataSource,
-                             private val remoteCountersDataSource: RemoteCountersDataSource,
+class CountersRepositoryImpl(private val localCountersDataSource: CountersDataSource,
+                             private val remoteCountersDataSource: CountersDataSource,
                              private val networkHelper: NetworkHelper) : CountersRepository {
 
     override fun addCounter(counterEntity: CounterEntity) {
@@ -40,15 +39,28 @@ class CountersRepositoryImpl(private val localCountersDataSource: LocalCountersD
         }
     }
 
-    override fun fetchAllCounters(): List<CounterEntity> {
-        return if (networkHelper.hasInternet()) {
+    override fun fetchAllCounters(callback: ((List<CounterEntity>) -> Unit)?) {
+        if (networkHelper.hasInternet()) {
             remoteCountersDataSource.fetchAllCounters { success, counters ->
                 if (success) {
                     localCountersDataSource.saveAllCounters(counters, null)
+                    callback?.invoke(counters)
                 }
             }
         } else {
-            localCountersDataSource.fetchAllCounters(null)
+            callback?.invoke(localCountersDataSource.fetchAllCounters(null))
+        }
+    }
+
+    override fun updateCounter(counterEntity: CounterEntity, callback: ((Boolean) -> Unit)?) {
+        if (networkHelper.hasInternet()) {
+            remoteCountersDataSource.updateCounter(counterEntity, { success, _ ->
+                callback?.invoke(success)
+            })
+        } else {
+            localCountersDataSource.updateCounter(counterEntity, { success, _ ->
+                callback?.invoke(success)
+            })
         }
     }
 }

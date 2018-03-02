@@ -8,7 +8,7 @@ class CounterViewModelToCounterMapper : Mapper<CounterViewModel, Counter>() {
 
     override fun map(from: CounterViewModel): Counter = Counter(
             from.label,
-            from.value.toFloat(),
+            from.value.toIntOrNull() ?: 0,
             from.format
     )
 }

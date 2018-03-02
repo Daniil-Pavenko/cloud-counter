@@ -6,6 +6,8 @@ interface CountersDataSource {
 
     fun addCounter(counterEntity: CounterEntity, callback: ((Boolean, CounterEntity) -> Unit)?)
 
+    fun updateCounter(counterEntity: CounterEntity, callback: ((Boolean, CounterEntity) -> Unit)?)
+
     fun deleteCounter(counterEntity: CounterEntity, callback: ((Boolean) -> Unit)?)
 
     fun fetchAllCounters(callback: ((Boolean, List<CounterEntity>) -> Unit)?): List<CounterEntity>

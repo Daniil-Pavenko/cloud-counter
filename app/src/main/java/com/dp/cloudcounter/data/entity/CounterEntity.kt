@@ -14,5 +14,5 @@ import android.arch.persistence.room.PrimaryKey
 @Entity
 data class CounterEntity(
         @PrimaryKey @ColumnInfo(name = "label") var label: String = "",
-        @ColumnInfo(name = "value") var value: Float = 0f,
+        @ColumnInfo(name = "value") var value: Int = 0,
         @ColumnInfo(name = "format") var format: String = "")

@@ -1,13 +1,24 @@
 package com.dp.cloudcounter.data.repository.datasource
 
 import com.dp.cloudcounter.data.entity.CounterEntity
+import com.dp.cloudcounter.data.repository.annotation.Local
 import com.dp.cloudcounter.data.storage.CCDatabase
 
+@Local
 class LocalCountersDataSource(private val ccDatabase: CCDatabase) : CountersDataSource {
 
     override fun addCounter(counterEntity: CounterEntity, callback: ((Boolean, CounterEntity) -> Unit)?) {
         try {
             ccDatabase.counterDao().addCounter(counterEntity)
+        } catch (e: Exception) {
+            callback?.invoke(false, counterEntity)
+        }
+        callback?.invoke(true, counterEntity)
+    }
+
+    override fun updateCounter(counterEntity: CounterEntity, callback: ((Boolean, CounterEntity) -> Unit)?) {
+        try {
+            ccDatabase.counterDao().updateCounter(counterEntity)
         } catch (e: Exception) {
             callback?.invoke(false, counterEntity)
         }

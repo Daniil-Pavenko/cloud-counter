@@ -1,18 +1,21 @@
 package com.dp.cloudcounter.di.module
 
+import com.dp.cloudcounter.data.entity.CounterEntity
 import com.dp.cloudcounter.data.repository.CountersRepository
+import com.dp.cloudcounter.data.repository.datasource.mapper.Mapper
+import com.dp.cloudcounter.di.annotation.PresenterScope
+import com.dp.cloudcounter.domain.model.Counter
 import com.dp.cloudcounter.domain.usecases.CounterInteractor
-import com.dp.cloudcounter.domain.usecases.mapper.CounterEntityToCounterMapper
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
-@Module(includes = [(RepositoryModule::class), (MapperModule::class)])
+@Module
 class InteractorModule {
 
     @Provides
-    @Singleton
+    @PresenterScope
     fun provideCounterInteractor(countersRepository: CountersRepository,
-                                 counterEntityToCounterMapper: CounterEntityToCounterMapper)
-            : CounterInteractor = CounterInteractor(countersRepository, counterEntityToCounterMapper)
+                                 counterEntityToCounterMapper: Mapper<CounterEntity, Counter>,
+                                 counterToCounterEntityMapper: Mapper<Counter, CounterEntity>)
+            : CounterInteractor = CounterInteractor(countersRepository, counterEntityToCounterMapper, counterToCounterEntityMapper)
 }

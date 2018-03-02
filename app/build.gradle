@@ -32,6 +32,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
@@ -44,6 +45,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
     implementation "com.afollestad.material-dialogs:core:$material_dialogs_version"
+    implementation "com.loopeer.library:itemtouchhelperextension:1.0.6"
     //Databinding
     kapt "com.android.databinding:compiler:$binding_version"
     //DI
@@ -59,8 +61,11 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     //Room DB
-    implementation "android.arch.persistence.room:runtime:$room_db_version"
+    compile "android.arch.persistence.room:runtime:$room_db_version"
+    kapt "android.arch.persistence.room:compiler:$room_db_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_db_version"
+    //Util
+    implementation 'com.google.code.gson:gson:2.8.2'
 }
 
 kotlin {

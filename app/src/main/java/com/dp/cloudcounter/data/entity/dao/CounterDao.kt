@@ -1,15 +1,12 @@
 package com.dp.cloudcounter.data.entity.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Delete
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import com.dp.cloudcounter.data.entity.CounterEntity
 
 @Dao
 interface CounterDao {
 
-    @Query("SELECT * FROM counter")
+    @Query("SELECT * FROM counterEntity")
     fun getAllCounters(): List<CounterEntity>
 
     @Insert
@@ -21,6 +18,9 @@ interface CounterDao {
     @Delete
     fun deleteCounter(counter: CounterEntity)
 
-    @Query("SELECT * FROM counter WHERE label LIKE :label LIMIT 1")
+    @Query("SELECT * FROM counterEntity WHERE label LIKE :label LIMIT 1")
     fun hasCounter(label: String): CounterEntity?
+
+    @Update
+    fun updateCounter(counterEntity: CounterEntity)
 }
