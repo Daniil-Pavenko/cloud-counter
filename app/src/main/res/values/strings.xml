@@ -3,4 +3,8 @@
     <string name="home_screen_counter_name_dialog_title">Enter counter name:</string>
     <string name="home_screen_add_label">Add</string>
     <string name="home_screen_cancel_label">Cancel</string>
+    <string name="login_screen_password_hint">Enter password</string>
+    <string name="login_screen_login_hint">Enter login name</string>
+    <string name="login_screen_remember_me_label">Remember account</string>
+    <string name="login_screen_sign_in_up_label">Sign In / Sign Up</string>
 </resources>

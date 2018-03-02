@@ -4,6 +4,7 @@ import com.dp.cloudcounter.di.annotation.PresenterScope
 import com.dp.cloudcounter.di.module.InteractorModule
 import com.dp.cloudcounter.di.module.PresenterMapperModule
 import com.dp.cloudcounter.ui.screen.home.HomePresenter
+import com.dp.cloudcounter.ui.screen.login.LoginPresenter
 import dagger.Subcomponent
 
 @Subcomponent(modules = [
@@ -13,4 +14,6 @@ import dagger.Subcomponent
 interface PresenterComponent {
 
     fun inject(homePresenter: HomePresenter)
+
+    fun inject(loginPresenter: LoginPresenter)
 }
